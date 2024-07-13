@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    image: php:8.2-apache
+    depends_on:
+      - mariadb
+    networks:
+      - dev-env
+  phpmyadmin:
+    image: imageName
+    depends_on:
+      - mariadb
+  mariadb:
