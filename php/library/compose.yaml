@@ -1,13 +1,40 @@
 version: '3'
 services:
   web:
-    image: php:8.2-apache
+    image: php:7.2-apache
+    ports:
+      - 8080:80
     depends_on:
       - mariadb
     networks:
       - dev-env
+    volumes:
+      - ./src:/var/www/html
   phpmyadmin:
-    image: imageName
+    image: phpmyadmin
+    ports:
+      - 8082:80
     depends_on:
       - mariadb
+    networks:
+      - dev-env
+    environment:
+      PMA_HOST: mariadb
   mariadb:
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: adminadmin
+      MYSQL_DATABASE: library_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    networks:
+      - dev-env
+
+networks:
+  dev-env:
+
+volumes:
+  db_data:
