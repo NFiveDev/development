@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <h1>Welcome to the library website</h1>
+
+    <main class="container">
+        <h2>Login with your account to browse the content</h2>
+
+        <form action="" class="">
+            <label for="">
+                <input type="text">
+            </label>
+            
+            <label for="">
+                <input type="text">
+            </label>
+            
+            <button type="submit">Login</button>
+        </form>
+
+        <a href="">
+            Don't have an account yet?
+        </a>
+    </main>
+
     <script src="/static/custom-script.js"></script>
 </body>
 </html>
