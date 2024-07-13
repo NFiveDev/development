@@ -1,3 +1,3 @@
 ## Run simple container for php development:
 
-- docker run --rm -d -p 8080:80 -v "${PWD}:/var/www/html" php:apache
+- docker run -d -p 80:80 --name my-apache-php-app -v "${pwd}:/var/www/html" php:7.2-apache

@@ -1,3 +1,37 @@
+<?php
+    $result = 0;
+    $data = $_POST;
+    if (!empty($data)) {
+        $action = $data["calculate-action"];
+        $displayData = $data["displayData"];
+
+
+        if ($data["calcData"]) {
+            $calcData = explode(",", $data["calcData"]);
+
+            for($i = 0; $i < count($calcData); ++$i) {
+                if (strcmp($action, "Addition")  == 0) {
+                    $result += $calcData[$i];
+                }
+                if (strcmp($action, "Subtract") == 0) {
+                    echo $action;
+                    $result = $result - $calcData[$i];
+                }
+                if (strcmp($action, "Multiply")  == 0) {
+                    $result = $result * $calcData[$i];
+                }
+                if (strcmp($action, "Divide")  == 0) {
+                    if($i == 0) {
+                        $result = $calcData[$i];
+                    } else {
+                        $result = $result / $calcData[$i];
+                    }
+                }
+            }
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +111,8 @@
                             echo "selected";
                         } ?> value="Divide">Divide</option>
             </select>
-            <input type="text" value="" placeholder="No value" id="calcData">
+            <input type="text" value="" id="calcDisplay" name="displayData">
+            <input type="text" value="" hidden placeholder="No value" id="calcData" name="calcData">
             <div class="m-grid" id="buttonContainer">
                 <input type="button" value="1">
                 <input type="button" value="2">
@@ -94,36 +129,41 @@
             <div>
                 <span>Result:</span>
                 <span>
-                    <?php ?>
+                    <?php
+                    echo $result;
+                    ?>
                 </span>
             </div>
         </form>
-
-
     </div>
 
-    <?php
-    $data = $_POST;
-    if (!empty($data)) {
-        echo $data["calculate-action"];
-    }
-    ?>
+
 
     <script>
         const buttonContainer = $("#buttonContainer");
         const action = $("#calculationAction");
         const calculateData = $("#calcData");
+        const displayData = $("#calcDisplay");
         let optionValue = "";
+        const delimiterMap = new Map();
+        delimiterMap.set("Addition", "+");
+        delimiterMap.set("Subtract", "-");
+        delimiterMap.set("Multiply", "*");
+        delimiterMap.set("Divide", "/");
+
         if (action && action.val() != "") optionValue = action.val();
 
         function SetCalculate(value, action) {
-            console.log(value)
-            console.log(action)
-            if (calculateData.val != "") {
-
-            } else {
-                debugger;
-                calculateData.val(value)
+            if (value != "") {
+                if (displayData.val() != undefined && displayData.val() != "") {
+                    const newValue = `${displayData.val()} ${delimiterMap.get(action)} ${value}`;
+                    const toServerData = `${calculateData.val()},${value}`
+                    displayData.val(newValue);
+                    calculateData.val(toServerData);
+                } else {
+                    displayData.val(value)
+                    calculateData.val(value)
+                }
             }
         }
 
@@ -131,8 +171,7 @@
             buttonContainer.children().each((index, element) => {
                 element.addEventListener("click", (e) => {
                     const value = e.srcElement.value;
-                    
-                    SetCalculate(value, action.val())
+                    SetCalculate(value, optionValue)
                 })
             });
         }
