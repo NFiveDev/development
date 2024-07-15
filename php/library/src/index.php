@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <h1>Welcome to the library website</h1>
 
@@ -17,19 +19,22 @@
             <label for="">
                 <input type="text">
             </label>
-            
+
             <label for="">
                 <input type="text">
             </label>
-            
+
             <button type="submit">Login</button>
         </form>
 
-        <a href="">
-            Don't have an account yet?
+        <a href="/routes/signup.php">
+            <p>
+                Don't have an account yet?
+            </p>
         </a>
     </main>
 
     <script src="/static/custom-script.js"></script>
 </body>
+
 </html>
