@@ -41,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $insertStatement = "INSERT INTO Users (Username,Hashed_password) values  ('$username','$hash')";
-            echo $insertStatement;
             $result = $client->query($insertStatement);
 
             if ($result === true) {
