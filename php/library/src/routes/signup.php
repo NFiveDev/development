@@ -1,7 +1,6 @@
 <?php
 include("../db/client.php");
-$db_client = new MariaClient();
-
+$client = MariaClient::GetClient();
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +19,7 @@ $db_client = new MariaClient();
         Sign up
     </h1>
     <div class="w-lg">
-        <form action="" class="flex-col">
+        <form action="signup.php" class="flex-col">
             <label for="username">Username:</label>
             <input id="username" name="username" type="text">
             <label class="mt-1" for="password">Password:</label>

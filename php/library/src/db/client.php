@@ -9,7 +9,7 @@ class MariaClient
 
     public static function GetClient()
     {
-        $mysqlcli = mysqli_connect(self::$databaseHost, self::$databaseUsername, self::$databasePassword, self::$databaseName);
+        $mysqlcli = new mysqli(self::$databaseHost, self::$databaseUsername, self::$databasePassword, self::$databaseName);
 
         if ($mysqlcli == false) {
             throw new Exception('Database connection failed!');
