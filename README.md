@@ -1,10 +1,13 @@
 # development
 Development Projects
 
+## PHP:
+
 [x] Calculator
 [] Library App
 [] Composer project
-[] Debug Project
+[] Debug Basics
 [] Simple php package that contains a router
 [] Learn Apache Configuration
 
+## Js:
