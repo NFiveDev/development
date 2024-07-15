@@ -5,7 +5,7 @@ $client = MariaClient::GetClient();
 $post_detect = false;
 $username_error = '';
 $password_error = '';
-
+$create_error = '';
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -19,13 +19,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $password_error = "Empty password detected fix it!";
     }
 
-    if($password_error === "" && $username_error === "") {
+    if ($password_error === "" && $username_error === "") {
         # Continue signup flow
 
         $username = $_POST["username"];
         $password = $_POST["password"];
+        echo $username;
 
-        
+        $userExistQuery = $client->query("SELECT ID from Users where Username = '$username'");
+        echo $userExistQuery->num_rows;
+
+        if ($userExistQuery->num_rows > 0) {
+            # User doesn't exist, we'll create it
+            $create_error = "User already exist with that username";
+            echo "her";
+        } else {
+            echo "her2";
+            $options = [
+                "cost" => 10
+            ];
+
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $insertStatement = "INSERT INTO Users (Username,Hashed_password) values  ('$username','$hash')";
+            echo $insertStatement;
+            $result = $client->query($insertStatement);
+
+            if ($result === true) {
+                echo $result;
+            } else {
+                echo $result;
+            }
+        }
     }
 }
 
@@ -47,6 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         Sign up
     </h1>
     <div class="w-lg">
+        <?php
+        if (trim($create_error) != "") {
+            echo "<span class='error-block'>$create_error</span>";
+        }
+        ?>
         <form action="signup.php" method="POST" class="signup-form">
             <div>
                 <label for="username">Username:</label>
