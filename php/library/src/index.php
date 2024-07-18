@@ -1,6 +1,27 @@
 <?php 
-    
+    $usernameError = "";
+    $passwordError = "";
 
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
+        echo "hej";
+
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        if(trim($username) === "" || strlen($username) < 5) {
+            $usernameError = "You need to specify a valid username";
+        }
+
+        if(trim($password) === "" || strlen($password) < 5) {
+            $passwordError = "You need to specify a valid password";
+        }
+
+        if(strlen($passwordError) === 0 && strlen($usernameError) === 0) {
+            # We continue login
+
+            
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +43,19 @@
 
         <form method="POST" action="/" class="login-form">
             <label for="username">username:</label>
-            <input type="text" id="username" name="username"> 
+            <input type="text" id="username" name="username" minlength="5" maxlength="15"> 
+            <?php 
+                if(strlen($usernameError) >= 1) {
+                    echo "<span class='error-block'>$usernameError</span>";
+                }
+            ?>
             <label for="password">password:</label>
-            <input type="text" id="password" name="password"> 
+            <input type="password" id="password" name="password" minlength="5" maxlength="15"> 
+            <?php 
+                if(strlen($passwordError) >= 1) {
+                    echo "<span class='error-block'>$passwordError</span>";
+                }
+            ?>
             <button type="submit">Login</button>
         </form>
 
