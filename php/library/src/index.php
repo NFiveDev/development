@@ -1,3 +1,8 @@
+<?php 
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,15 +20,11 @@
     <main class="container">
         <h2>Login with your account to browse the content</h2>
 
-        <form action="" class="">
-            <label for="">
-                <input type="text">
-            </label>
-
-            <label for="">
-                <input type="text">
-            </label>
-
+        <form method="POST" action="/" class="login-form">
+            <label for="username">username:</label>
+            <input type="text" id="username" name="username"> 
+            <label for="password">password:</label>
+            <input type="text" id="password" name="password"> 
             <button type="submit">Login</button>
         </form>
 

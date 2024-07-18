@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($password_error === "" && $username_error === "") {
         # Continue signup flow
-
+  
         $username = $_POST["username"];
         $password = $_POST["password"];
         echo $username;
