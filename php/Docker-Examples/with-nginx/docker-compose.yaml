@@ -1,0 +1,23 @@
+services:
+  web:
+    build:
+      context: ./Docker
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "8000:80"
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - "8001:80"
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_USER=root
+      - PMA_PASSWORD=my-secret-pw
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - ./Docker/mariadb:/var/lib/mysql:Z
+    environment:
+      - MARIADB_ROOT_PASSWORD=my-secret-pw
