@@ -1,5 +1,5 @@
 <?php 
-    include_once("router.php");
+    include_once("core/router.php");
     $router = new Router();
 ?>
 
@@ -16,7 +16,7 @@
         require('components/app-bar.php')
     ?>
 
-    
+
 
 
 </body>
