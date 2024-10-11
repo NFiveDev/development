@@ -1,0 +1,56 @@
+:root {
+    --desktop: 1280px;
+
+    --border-rounded-md: 10px;
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+    --color-neutral-light: #e5e7eb;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-bar-wrapper {
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    max-width: var(--desktop);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.app-bar {
+    margin-top: 10px;
+    background-color: var(--color-neutral-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--border-rounded-md);
+    padding-right: 1rem;
+    padding-left: 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+@media screen {
+    
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    padding-top: 1rem;
+
+}
