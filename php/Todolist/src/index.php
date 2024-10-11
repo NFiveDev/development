@@ -1,3 +1,8 @@
+<?php 
+    include_once("router.php");
+    $router = new Router();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +12,12 @@
     <title>hej</title>
 </head>
 <body>
+    <?php 
+        require('components/app-bar.php')
+    ?>
+
+    
+
 
 </body>
 </html>
